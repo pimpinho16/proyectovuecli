@@ -1,19 +1,46 @@
 <template>
   <div >
-    <Persona nombre="Manuel" edad = 27></Persona>
-    <hr/>
-    <Persona nombre="Alex" edad = 32></Persona>
+    <ComponenteSlot>
+      hola desde el slot
+      <template slot="slot2">
+
+      </template>
+    </ComponenteSlot>
+  <Usuarios 
+    v-for="usuario in usuarios"
+    v-bind:key ="usuario.id"
+    :nombre = "usuario.name"  
+    :email = "usuario.email"
+    :telefono = "usuario.phone">
+    </Usuarios>
+
   </div>
 </template>
 
 <script>
-  import Persona from "./components/Persona"
-
+import axios from 'axios'
+import Usuarios from './components/Usuarios.vue'
+import ComponenteSlot from './components/ComponenteSlot.vue'
 
   export default {
     name: 'App',
     components: {
-      Persona,
+      Usuarios,
+      ComponenteSlot
+    },
+    data(){
+      return {
+        usuarios: [],
+      }
+    },
+    methods:{
+      obtenerUsuarios(){
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then((respuesta)=> this.usuarios= respuesta.data)
+      }
+    },
+    mounted(){
+      this.obtenerUsuarios()
     }
   }
 </script>
