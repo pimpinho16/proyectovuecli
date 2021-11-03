@@ -13,7 +13,7 @@
     :email = "usuario.email"
     :telefono = "usuario.phone">
     </Usuarios>
-
+<Padre></Padre>
   </div>
 </template>
 
@@ -21,12 +21,14 @@
 import axios from 'axios'
 import Usuarios from './components/Usuarios.vue'
 import ComponenteSlot from './components/ComponenteSlot.vue'
+import Padre from './components/Padre.vue'
 
   export default {
     name: 'App',
     components: {
       Usuarios,
-      ComponenteSlot
+      ComponenteSlot,
+      Padre
     },
     data(){
       return {
